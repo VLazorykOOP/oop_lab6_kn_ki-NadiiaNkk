@@ -1,0 +1,72 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+// Абстрактний базовий клас Фігура
+class Shape {
+public:
+    // Віртуальна функція для обчислення площі поверхні
+    virtual double surfaceArea() const = 0;
+};
+
+// Клас Паралелепіпед
+class Cuboid : public Shape {
+private:
+    double length;
+    double width;
+    double height;
+
+public:
+    // Конструктор з параметрами
+    Cuboid(double l, double w, double h) : length(l), width(w), height(h) {}
+
+    // Перевизначення віртуальної функції для обчислення площі поверхні паралелепіпеда
+    double surfaceArea() const override {
+        return 2 * (length * width + length * height + width * height);
+    }
+};
+
+// Клас Тетраедр
+class Tetrahedron : public Shape {
+private:
+    double side;
+
+public:
+    // Конструктор з параметром
+    Tetrahedron(double s) : side(s) {}
+
+    // Перевизначення віртуальної функції для обчислення площі поверхні тетраедра
+    double surfaceArea() const override {
+        return sqrt(3) * side * side;
+    }
+};
+
+// Клас Куля
+class Sphere : public Shape {
+private:
+    double radius;
+
+public:
+    // Конструктор з параметром
+    Sphere(double r) : radius(r) {}
+
+    // Перевизначення віртуальної функції для обчислення площі поверхні кулі
+    double surfaceArea() const override {
+        return 4 * M_PI * radius * radius;
+    }
+};
+
+int main() {
+    // Створення об'єктів класів і обчислення їх площі поверхні
+    Cuboid cuboid(2, 3, 4);
+    cout << "Площа поверхні паралелепіпеда: " << cuboid.surfaceArea() << endl;
+
+    Tetrahedron tetrahedron(5);
+    cout << "Площа поверхні тетраедра: " << tetrahedron.surfaceArea() << endl;
+
+    Sphere sphere(6);
+    cout << "Площа поверхні кулі: " << sphere.surfaceArea() << endl;
+
+    return 0;
+}
