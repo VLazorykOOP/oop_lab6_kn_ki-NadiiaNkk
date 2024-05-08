@@ -1,0 +1,69 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Базовий клас Водойм
+class Waterbody {
+protected:
+    string name;
+
+public:
+    // Конструктор з параметрами
+    Waterbody(const string& n) : name(n) {}
+
+    // Віртуальна функція виведення інформації
+    virtual void displayInfo() const {
+        cout << "Тип водоймы: " << name << endl;
+    }
+};
+
+// Похідний клас Залив
+class Bay : public Waterbody {
+public:
+    // Конструктор з параметрами
+    Bay(const string& n) : Waterbody(n) {}
+
+    // Перевизначення функції виведення інформації
+    void displayInfo() const override {
+        cout << "Залив: " << name << endl;
+    }
+};
+
+// Похідний клас Бухта
+class Cove : public Waterbody {
+public:
+    // Конструктор з параметрами
+    Cove(const string& n) : Waterbody(n) {}
+
+    // Перевизначення функції виведення інформації
+    void displayInfo() const override {
+        cout << "Бухта: " << name << endl;
+    }
+};
+
+// Похідний клас Море
+class Sea : public Waterbody {
+public:
+    // Конструктор з параметрами
+    Sea(const string& n) : Waterbody(n) {}
+
+    // Перевизначення функції виведення інформації
+    void displayInfo() const override {
+        cout << "Море: " << name << endl;
+    }
+};
+
+int main() {
+    // Створення об'єктів класів
+    Bay bay("Ботсадский залив");
+    Cove cove("Львівська бухта");
+    Sea sea("Чорне море");
+
+    // Виклик функції виведення інформації для кожного об'єкта
+    bay.displayInfo();
+    cove.displayInfo();
+    sea.displayInfo();
+
+    return 0;
+}
